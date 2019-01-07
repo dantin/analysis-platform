@@ -5,20 +5,28 @@ digraph G {
     node [shape="box", style="rounded,filled", fontcolor="#FFFFFF"];
 
     // Nodes
-    input_features[shape=note, style="", fontcolor="", label="Extracted Features"];
+    input_features[shape="note", style="", fontcolor="", label="Extracted Features"];
     data_preparation[fillcolor="#84AC50", label="Data Preparation"];
     preprocess[fillcolor="#7199D2", label="Feature Preprocess"];
     feature_selection[fillcolor="#7199D2", label="Feature Selection"];
     model_training[fillcolor="#7199D2", label="Model Training"];
     prediction[fillcolor="#D47C39", label="Prediction"];
+    context[shape="oval", fillcolor="#78B5C6", label="Context"];
     
     // Edges
     { rank=same input_features data_preparation preprocess }
     { rank=same model_training prediction }
+    { rank=same feature_selection context }
     
-    input_features    -> data_preparation;
-    data_preparation  -> preprocess;
+    data_preparation  -> input_features     [dir="back"];
+    preprocess        -> data_preparation   [dir="back"];
     preprocess        -> feature_selection;
     feature_selection -> model_training;
     model_training    -> prediction;
+
+    data_preparation  -> context;
+    preprocess        -> context;
+    feature_selection -> context;
+    model_training    -> context;
+    context           -> prediction;
 }
