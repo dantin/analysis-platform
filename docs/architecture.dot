@@ -1,0 +1,36 @@
+digraph G {
+
+    ranksep=0.8;
+
+    graph [compound=true];
+
+    subgraph cluster_infra {
+        label = "Infrastructure";
+
+        MQ[shape=record, label="MQ"];
+        DB[shape=cylinder, label="MongoDB"];
+    }
+    subgraph cluster_processor {
+        label = "Processors";
+        node [shape=oval];
+
+        P0
+        P1
+        P2
+    }
+
+    // Node Attributes
+    nodesep=0.5;
+    
+    CLI[label="cli tools", style=dashed];
+    API[shape=box, label="API Server"];
+    
+    rankdir=LR;
+    
+    // Relationship of Nodes
+    CLI -> API[dir=both];
+    API -> MQ[shape=normal lhead=cluster_infra];
+    MQ  -> P1[ltail=cluster_infra lhead=cluster_processor];
+    P1  -> DB [dir=both ltail=cluster_processor lhead=cluster_infra];
+    API -> DB [dir=both lhead=cluster_infra];
+}

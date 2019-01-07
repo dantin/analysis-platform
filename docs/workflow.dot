@@ -1,0 +1,24 @@
+digraph G {
+    // Graph Attributes
+    rankdir=LR;
+    label="ML Workflow";
+    node [shape="box", style="rounded,filled", fontcolor="#FFFFFF"];
+
+    // Nodes
+    input_features[shape=note, style="", fontcolor="", label="Extracted Features"];
+    data_preparation[fillcolor="#84AC50", label="Data Preparation"];
+    preprocess[fillcolor="#7199D2", label="Feature Preprocess"];
+    feature_selection[fillcolor="#7199D2", label="Feature Selection"];
+    model_training[fillcolor="#7199D2", label="Model Training"];
+    prediction[fillcolor="#D47C39", label="Prediction"];
+    
+    // Edges
+    { rank=same input_features data_preparation preprocess }
+    { rank=same model_training prediction }
+    
+    input_features    -> data_preparation;
+    data_preparation  -> preprocess;
+    preprocess        -> feature_selection;
+    feature_selection -> model_training;
+    model_training    -> prediction;
+}
