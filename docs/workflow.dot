@@ -1,7 +1,7 @@
 digraph G {
     // Graph Attributes
     rankdir=LR;
-    label="ML Workflow";
+    label="Analysis Workflow";
     node [shape="box", style="rounded,filled", fontcolor="#FFFFFF"];
 
     // Nodes
