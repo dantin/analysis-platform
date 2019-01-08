@@ -1,10 +1,6 @@
 # Analysis Platform
 
-Analysis Platform is a research platform that analysis data.
-
-### Platform Architecure
-
-![Architecture](./docs/figures/architecture.png)
+Analysis Platform is a research platform that provides a common way to analysis data.
 
 ### Analysis Workflow
 
